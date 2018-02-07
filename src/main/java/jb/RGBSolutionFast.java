@@ -40,16 +40,29 @@ public class RGBSolutionFast extends RGBTaskSolution {
         int d2 = (i - pos) * (i - pos);
         min = d1 + d2;
 
-        for (int j = bestPos + 1 ; j < prevPos.size(); j++) {
+        for (int j = prevPos.size() - 1, b = bestPos; j > b; j--) {
           pos = prevPos.get(j);
           d1 = dist[pos];
           d2 = (i - pos) * (i - pos);
           int d = d1 + d2;
-          if (d <= min) { //<=
+          if (d < min) { //<=
             min = d;
             bestPos = j;
-          }
+          }/* else {
+            break;
+          }*/
         }
+
+//        for (int j = bestPos + 1; j < prevPos.size(); j++) {
+//          pos = prevPos.get(j);
+//          d1 = dist[pos];
+//          d2 = (i - pos) * (i - pos);
+//          int d = d1 + d2;
+//          if (d <= min) { //<=
+//            min = d;
+//            bestPos = j;
+//          }
+//        }
 
         best[prevColor] = bestPos;
       }
